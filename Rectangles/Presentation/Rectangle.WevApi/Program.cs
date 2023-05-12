@@ -9,12 +9,19 @@ using Rectangle.Application.Interfaces;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Rectangle.WebApi.Middleware;
+using Rectangle.WebApi.JWT;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Rectangle.WebApi.JWT.Models;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .WriteTo.Console()
     .CreateLogger();
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("Jwt"));
 
 ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
@@ -45,6 +52,9 @@ builder.Services.AddCors(options =>
     });
 });
 
+//JWT Authentication
+builder.Services.AddJWT(configuration);
+
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
@@ -59,6 +69,8 @@ app.UseSwaggerUI(config =>
 });
 app.UseCustomExceptionHandler();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseEndpoints(endpoints =>

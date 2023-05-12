@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rectangle.Application.Rectangles.Queries;
 using Rectangle.WebApi.Models;
@@ -16,6 +17,7 @@ namespace Rectangle.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<RectangleListVm>> SearchRectangles([FromBody] PointsList pointsList)
         {
             var command = _mapper.Map<GetRectanglesSearchQuery>(pointsList);

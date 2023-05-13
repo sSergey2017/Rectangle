@@ -11,10 +11,25 @@ public static class DependencyInjection
         services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DbConnection");
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
+
         services.AddDbContext<RectangleDbContext>(options =>
         {
-            options.UseSqlServer(connectionString);
+            options.UseMySql(connectionString, serverVersion,
+                mysqlOptions =>
+                    mysqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null));
         });
+
+        //services.AddDbContext<RectangleDbContext>(options =>
+        //{
+        //    options.UseMySql(connectionString, serverVersion);
+        //    //options.UseSqlServer(connectionString);
+
+
+        //});
         services.AddScoped<IRectangleDbContext>(provider =>
             provider.GetService<RectangleDbContext>());
 

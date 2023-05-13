@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  rectangle.webapi:
+    image: ${DOCKER_REGISTRY-}rectanglewebapi
+    build:
+      context: .
+      dockerfile: Presentation/Rectangle.WevApi/Dockerfile
+    ports:
+      - "8080:80"
+
+  my-mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+    ports:
+      - "3306:3306"

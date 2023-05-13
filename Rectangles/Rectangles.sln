@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rectangle.Persistence", "In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rectangle.WebApi", "Presentation\Rectangle.WevApi\Rectangle.WebApi.csproj", "{5464AF77-6294-4ABC-A766-7AE677323E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectanglesTest", "Tests\RectanglesTest\RectanglesTest.csproj", "{5ADE0303-ACFB-402C-8112-50F5C3AFC2E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RectanglesTest", "Tests\RectanglesTest\RectanglesTest.csproj", "{5ADE0303-ACFB-402C-8112-50F5C3AFC2E7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{60C0A95E-F853-429D-9330-FE6533C225DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{5ADE0303-ACFB-402C-8112-50F5C3AFC2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ADE0303-ACFB-402C-8112-50F5C3AFC2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ADE0303-ACFB-402C-8112-50F5C3AFC2E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C0A95E-F853-429D-9330-FE6533C225DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C0A95E-F853-429D-9330-FE6533C225DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C0A95E-F853-429D-9330-FE6533C225DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C0A95E-F853-429D-9330-FE6533C225DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

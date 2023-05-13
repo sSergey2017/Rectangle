@@ -39,7 +39,8 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks()
-    .AddSqlServer(builder.Configuration.GetConnectionString("DbConnection"), tags: new[] { "database" })
+    .AddMySql(builder.Configuration.GetConnectionString("DbConnection"), tags: new[] { "database" })
+    //.AddSqlServer(builder.Configuration.GetConnectionString("DbConnection"), tags: new[] { "database" })
     .AddCheck<RectangleServiceHealthCheck>(nameof(RectangleServiceHealthCheck));
 
 builder.Services.AddCors(options =>

@@ -27,6 +27,10 @@ Your application must:
 
 ## Getting Started
 
+### Test Credentials:
+  - Username: "admin"
+  - Password: "testAdmin"
+
 ### To run the application without Docker:
 To utilize the database, you need to launch Docker with the following command:
 

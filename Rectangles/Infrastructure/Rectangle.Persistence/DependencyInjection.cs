@@ -23,13 +23,6 @@ public static class DependencyInjection
                         errorNumbersToAdd: null));
         });
 
-        //services.AddDbContext<RectangleDbContext>(options =>
-        //{
-        //    options.UseMySql(connectionString, serverVersion);
-        //    //options.UseSqlServer(connectionString);
-
-
-        //});
         services.AddScoped<IRectangleDbContext>(provider =>
             provider.GetService<RectangleDbContext>());
 

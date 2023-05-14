@@ -10,10 +10,8 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Rectangle.WebApi.Middleware;
 using Rectangle.WebApi.JWT;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Rectangle.WebApi.JWT.Models;
+using Rectangle.WebApi.Swagger;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
@@ -36,11 +34,10 @@ builder.Services.AddAutoMapper(config =>
 builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
 builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
+builder.Services.AddCustomSwagger();
 
 builder.Services.AddHealthChecks()
     .AddMySql(builder.Configuration.GetConnectionString("DbConnection"), tags: new[] { "database" })
-    //.AddSqlServer(builder.Configuration.GetConnectionString("DbConnection"), tags: new[] { "database" })
     .AddCheck<RectangleServiceHealthCheck>(nameof(RectangleServiceHealthCheck));
 
 builder.Services.AddCors(options =>
